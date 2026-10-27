@@ -1,0 +1,39 @@
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: cleanup
+spec:
+  workspaces:
+    - name: source
+  steps:
+    - name: remove
+      image: alpine:3
+      workingDir: $(workspaces.source.path)
+      script: |
+        #!/usr/bin/env sh
+        rm -rf $(workspaces.source.path)/*
+        echo "Cleaned workspace"
+
+---
+apiVersion: tekton.dev/v1beta1
+kind: Task
+metadata:
+  name: nose
+spec:
+  workspaces:
+    - name: source
+  params:
+    - name: args
+      description: Arguments to pass to nose
+      type: string
+      default: "-v"
+  steps:
+    - name: nosetests
+      image: python:3.8
+      workingDir: $(workspaces.source.path)
+      script: |
+        #!/usr/bin/env bash
+        python -m pip install --upgrade pip
+        pip install nose
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+        nosetests $(params.args)
