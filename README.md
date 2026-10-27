@@ -1,13 +1,9 @@
 # CI/CD Final Project
 
-This repository contains a complete CI/CD pipeline implementation using GitHub Actions and OpenShift Pipelines (Tekton).
+This repository contains the CI/CD pipeline implementation for the DevOps Final Project.
 
 ## Project Name
-CI/CD Final Project - DevOps Pipeline Implementation
+CI/CD Pipeline Final Project
 
-## Features
-- GitHub Actions workflow for linting and testing
-- Tekton pipeline with cleanup and test tasks
-- OpenShift/Kubernetes deployment pipeline
-- Automated unit tests with nose
-- Code linting with flake8
+## Description
+Complete CI/CD pipeline using GitHub Actions for continuous integration and OpenShift Pipelines (Tekton) for continuous deployment. Implements automated linting with flake8, unit testing with nose, and containerized deployment.
